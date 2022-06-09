@@ -1,0 +1,15 @@
+<font color="#f5f5f5">
+<h1>{{ question.question_text }}</h1>
+{% load static %}
+<head>
+    <title>Статистика опроса: {{ question.question_text }}</title>
+</head>
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+<ul>
+    {% for choice in question.choice_set.all %}
+        <h3><li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li></h3>
+    {% endfor %}
+</ul>
+</font>
+
+<h3><a href="{% url 'polls:detail' question.id %}"><font color="red">Голосовать снова?</font></a></h3>
